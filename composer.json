@@ -1,0 +1,31 @@
+{
+    "name": "myparcelcom/jaeger-tracing",
+    "description": "Library with common classes used for Jaeger tracing",
+    "type": "library",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=8.2",
+        "jonahgeorge/jaeger-client-php": "^1.5",
+        "laravel/framework": ">=8.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "autoload": {
+        "psr-4": {
+            "MyParcelCom\\JaegerTracing\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MyParcel.com Development Team"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MyParcelCom\\JaegerTracing\\Providers\\JaegerServiceProvider"
+            ]
+        }
+    }
+}
