@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace MyParcelCom\JaegerTracing\Providers;
 
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Jaeger\Config;
+use MyParcelCom\JaegerTracing\Subscribers\HttpRequestSpanSubscriber;
+use MyParcelCom\JaegerTracing\Subscribers\JobSpanSubscriber;
+use MyParcelCom\JaegerTracing\Subscribers\SpanSubscriber;
 use OpenTracing\GlobalTracer;
 use OpenTracing\Tracer;
 
@@ -36,5 +40,12 @@ class JaegerServiceProvider extends ServiceProvider
 
             return GlobalTracer::get();
         });
+    }
+
+    public function boot(): void
+    {
+        Event::subscribe(HttpRequestSpanSubscriber::class);
+        Event::subscribe(JobSpanSubscriber::class);
+        Event::subscribe(SpanSubscriber::class);
     }
 }
